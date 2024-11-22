@@ -8,18 +8,17 @@ jobs:
   run:
     runs-on: self-hosted
     steps:
-      - name: Run docker compose
+      - name: Docker compose down
         run: docker compose down || true
 
-      - uses: actions/checkout@v3
+      - name: Pull repository with submodules
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_ORG_TOKEN }}
           submodules: true
-      - name: Check and fetch repo
-        run: echo "Repo checked out!"
 
       - name: Echo Github Secrets
         run: echo '${{ secrets.ENV }}' > .env
 
-      - name: Run docker compose
+      - name: Docker compose up
         run: docker compose up -d --build
