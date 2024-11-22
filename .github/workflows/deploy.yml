@@ -1,0 +1,22 @@
+name: deploy
+run-name: Deploy to production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: self-hosted
+    steps:
+      - name: Run docker compose
+        run: docker compose down
+
+      - uses: actions/checkout@v3
+      - name: Check and fetch repo
+        run: echo "Repo checked out!"
+
+      - name: Echo Github Secrets
+        run: echo '${{ secrets.ENV }}' > .env
+
+      - name: Run docker compose
+        run: docker compose up -d --build
