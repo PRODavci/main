@@ -1,3 +1,6 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/PRODavci/backend
+[submodule "network-scanner"]
+	path = network-scanner
+	url = https://github.com/PRODavci/network-scanner
