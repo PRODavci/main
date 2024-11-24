@@ -42,6 +42,33 @@ services:
       timeout: 5s
       retries: 5
 
+  cve-service-postgres:
+    build:
+      context: .
+      dockerfile: ./cve-service/Dockerfile-postgres
+    container_name: cve-service-postgres
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - cve_service_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cve-service-app:
+    build:
+      context: .
+      dockerfile: ./cve-service/Dockerfile
+    container_name: cve-service-app
+    env_file:
+      - .env
+    depends_on:
+      cve-service-postgres:
+        condition: service_healthy
+
   frontend:
     build:
       context: ./frontend
@@ -63,3 +90,4 @@ services:
 
 volumes:
   postgres_data:
+  cve_service_postgres_data:
