@@ -44,8 +44,8 @@ services:
 
   cve-service-postgres:
     build:
-      context: .
-      dockerfile: ./cve-service/Dockerfile-postgres
+      context: ./cve-service
+      dockerfile: Dockerfile-postgres
     container_name: cve-service-postgres
     restart: always
     env_file:
@@ -60,8 +60,8 @@ services:
 
   cve-service-app:
     build:
-      context: .
-      dockerfile: ./cve-service/Dockerfile
+      context: ./cve-service
+      dockerfile: Dockerfile
     container_name: cve-service-app
     env_file:
       - .env
