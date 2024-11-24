@@ -4,3 +4,6 @@
 [submodule "network-scanner"]
 	path = network-scanner
 	url = https://github.com/PRODavci/network-scanner
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/PRODavci/frontend
