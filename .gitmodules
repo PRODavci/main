@@ -7,3 +7,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/PRODavci/frontend
+[submodule "cve-service"]
+	path = cve-service
+	url = https://github.com/PRODavci/cve-service
